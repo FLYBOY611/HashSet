@@ -4,10 +4,7 @@
  */
 package hashset;
 
-/**
- *
- * @author richard.eaton
- */
+
 public class HashSet  {
 
 
@@ -19,6 +16,7 @@ public class HashSet  {
         System.out.append("To get started, we have implemented two different"
                 + " sets of data");
         
+        //This looks like the perfect kind of program for a Switch statement!
         
     }
 }
