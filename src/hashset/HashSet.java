@@ -8,12 +8,17 @@ package hashset;
  *
  * @author richard.eaton
  */
-public class HashSet {
+public class HashSet  {
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        System.out.println("Welcome to the friendly Hash Table program!");
+        System.out.println("This program can do a variety of functions"
+                + " using two different data sets");
+        System.out.append("To get started, we have implemented two different"
+                + " sets of data");
+        
+        
     }
 }
