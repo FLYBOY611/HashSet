@@ -63,6 +63,8 @@ public class ArrayMethods implements HashADT {
     //NOT OUR FINAL INSERTION METHOD
     //WE NEED TO DO THIS WITH HASHING
     public void Insert(int Element, set DataSet) {
+        //If the set already contains that element then
+        //it needs to be rejected
         DataSet.stuff.add(Element);
     }
 
