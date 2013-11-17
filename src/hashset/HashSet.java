@@ -130,6 +130,84 @@ public class HashSet {
                         }
                     }
                     break;
+                //CHECK IF BOTH SETS ARE EQUAL
+                case 5:
+                    Operations.Equality(Array1, Array2);
+                    break;
+                //CHECK IF ONE IS A SUBET OF THE OTHER
+                case 6:
+                    boolean ValidChoice6 = false;
+                    while (ValidChoice6 == false) {
+                        menus.WhichArraySubset();
+                        int ArrayPick = input3.nextInt();
+
+                        if (ArrayPick == 1) {
+                            Operations.isSubset(Array1, Array2);
+                            ValidChoice6 = true;
+                        } else if (ArrayPick == 2) {
+                            Operations.isSubset(Array2, Array1);
+                            ValidChoice6 = true;
+                        } else {
+                            System.out.println("That wasn't a valid choice!"
+                                    + "/r");
+                        }
+                    }
+                    break;
+                //COMBINE SETS IN A UNION
+                case 7:
+                    Operations.Union(Array1, Array2);
+                    break;
+                //DISPLAY DATA INTERSECTIONS
+                case 8:
+                    Operations.Intersection(Array1, Array2);
+                    break;
+                //DISPLAY DATA DIFFERENCES
+                case 9:
+                    Operations.Difference(Array1, Array2);
+                    break;
+                //DEEP COPY
+                case 10:
+                    boolean ValidChoice10 = false;
+
+                    while (ValidChoice10 == false) {
+                        menus.WhichArrayDeepCopy();
+                        int ArrayPick = input3.nextInt();
+
+                        if (ArrayPick == 1) {
+                            Array2.stuff.clear();
+                            Array1 = 
+                               Operations.DeepCopy(Array1, Array2, ArrayPick);
+                            ValidChoice10 = true;
+                        } else if (ArrayPick == 2) {
+                            Array2.stuff.clear();
+                            Array2 = 
+                               Operations.DeepCopy(Array1, Array2, ArrayPick);
+                            ValidChoice10 = true;
+                        } else {
+                            System.out.println("That wasn't a valid choice!"
+                                    + "/r");
+                        }
+                    }
+                    break;
+                //WIPE AWAY A SET
+                case 11:
+                    boolean ValidChoice11 = false;
+                    while (ValidChoice11 == false) {
+                        menus.WhichArrayWipe();
+                        int ArrayPick = input3.nextInt();
+
+                        if (ArrayPick == 1) {
+                            Array1.stuff.clear();
+                            ValidChoice11 = true;
+                        } else if (ArrayPick == 2) {
+                            Array2.stuff.clear();
+                            ValidChoice11 = true;
+                        } else {
+                            System.out.println("That wasn't a valid choice!"
+                                    + "/r");
+                        }
+                    }
+                    break;
                 case 12:
                     System.out.println("Goodbye!");
                     System.exit(0);
