@@ -18,7 +18,7 @@ public interface HashADT {
 
 //Given two sets return a set that contains 
 //all elements that are not shared between A and B
-    public set Difference();
+    public set Difference(set FirstSet, set SecondSet);
 
 //Inserts a element into the particular set
 //Duplicate elements can't be inserted

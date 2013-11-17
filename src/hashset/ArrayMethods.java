@@ -8,8 +8,10 @@ public class ArrayMethods implements HashADT {
     //account for collisions and links?
     public boolean Equality(set DataSetA, set DataSetB) {
         if (DataSetA.stuff.equals(DataSetB.stuff)) {
+            System.out.println("These sets are totally equal!");
             return true;
         } else {
+            System.out.println("These sets are not equal");
             return false;
         }
 
@@ -50,14 +52,49 @@ public class ArrayMethods implements HashADT {
         return DataSetC;
     }
 
-    @Override
+    //Given two sets return a set that contains
+    //all the elements contained within set A and B
     public set Intersection(set FirstSet, set SecondSet) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //Make a new set
+        set ThirdSet = new set();
+        //Cycle through the first array and compare to the second
+        //to see what's in the first and the second
+        //add those elements to the third array
+        for (int i = 0; i < FirstSet.stuff.size(); i++) {
+            int item = FirstSet.stuff.get(i);
+            if(SecondSet.stuff.contains(item) == true){
+                ThirdSet.stuff.add(item);
+            }
+        }
+
+        return ThirdSet;
     }
 
-    @Override
-    public set Difference() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    //Given two sets return a set that contains 
+    //all elements that are not shared between A and B
+    public set Difference(set FirstSet, set SecondSet) {
+        //Make a new set
+        set ThirdSet = new set();
+        //Cycle through the first array and compare to the second
+        //to see what's in the first and not the second
+        //add those elements to the third array
+        for (int i = 0; i < FirstSet.stuff.size(); i++) {
+            int item = FirstSet.stuff.get(i);
+            if(SecondSet.stuff.contains(item) == false){
+                ThirdSet.stuff.add(item);
+            }
+        }
+        
+        //Cycle through the second array and compare to the first
+        //to see what's in the second and not the first
+        //add those elements to the third array
+        for (int i = 0; i < SecondSet.stuff.size(); i++) {
+            int item = SecondSet.stuff.get(i);
+            if(FirstSet.stuff.contains(item) == false){
+                ThirdSet.stuff.add(item);
+            }
+        }
+        return ThirdSet;
     }
 
     //NOT OUR FINAL INSERTION METHOD
@@ -65,7 +102,17 @@ public class ArrayMethods implements HashADT {
     public void Insert(int Element, set DataSet) {
         //If the set already contains that element then
         //it needs to be rejected
-        DataSet.stuff.add(Element);
+        if (DataSet.stuff.contains(Element) == true) {
+            System.out.println("ERROR! "
+                    + "Element " + Element + " is already contained "
+                    + "in that set!");
+        } else {
+            System.out.println("Element " + Element + " has been inserted "
+                    + "in that set");
+            DataSet.stuff.add(Element);
+        }
+
+
     }
 
     //Determines if the element exists within the set
@@ -73,8 +120,10 @@ public class ArrayMethods implements HashADT {
     public boolean ElementOf(int Element, set DataSet) {
         boolean YesOrNo = false;
         if (DataSet.stuff.contains(Element)) {
+            System.out.println("That element exists in that set!");
             return true;
         } else {
+            System.out.println("That element does not exist in that set");
             return false;
         }
 
@@ -104,17 +153,18 @@ public class ArrayMethods implements HashADT {
 
     //Prints out all data elements in the set
     public void SetPrint(set DataSet) {
-        System.out.println("\rYour current elements are:");
+        System.out.println("\rThe current elements are:");
         for (int i = 0; i < DataSet.stuff.size(); i++) {
             int item = DataSet.stuff.get(i);
-            System.out.println(item + " ");
+            System.out.print(item + " ");
 
         }
+        System.out.print("\r");
     }
 
     //Returns the length of the Set that it's given
     public int SetLength(set DataSet) {
-
+        System.out.println("The set is of length " + DataSet.stuff.size());
         return DataSet.stuff.size();
     }
 }
