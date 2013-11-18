@@ -4,8 +4,9 @@ package hashset;
 public class ArrayMethods implements HashADT {
 
     //Checks to see if both sets are equal
-    //This totally looks like it would work but does it 
-    //account for collisions and links?
+    //The Arraylist equals method gives us a 
+    //wonderful way of doing this. We can save ourselves
+    //the time of having to loop through both arrays
     public boolean Equality(set DataSetA, set DataSetB) {
         if (DataSetA.stuff.equals(DataSetB.stuff)) {
             System.out.println("These sets are totally equal!");
@@ -18,8 +19,9 @@ public class ArrayMethods implements HashADT {
     }
 
     //Check to see if Set B is a subset of A
-    //Seriously, we have a method in the API to do just that
-    //Is it really this easy?
+    //Again, we can save ourselves the time of having 
+    //to do so much looping by using standard libraries
+    //that exist within the ArrayList
     public boolean isSubset(set DataSetA, set DataSetB) {
         if (DataSetA.stuff.containsAll(DataSetB.stuff)) {
             System.out.println("The set is a subset!");
@@ -32,7 +34,7 @@ public class ArrayMethods implements HashADT {
 
     //Takes two sets and returns a new set that combines
     //all the elements of both
-    //Something kinda tricky!
+    //Something kinda tricky! Here we actually do need loops
     public set Union(set DataSetA, set DataSetB) {
         //Make a new Data set and call it C
         set DataSetC = new set();
@@ -71,6 +73,9 @@ public class ArrayMethods implements HashADT {
 
     //Given two sets return a set that contains
     //all the elements contained within set A and B
+    //We can reuse some code from the method that checks if 
+    //an element exists in an array. We only actually have to
+    //cycle one array to check all elements that intersect
     public set Intersection(set FirstSet, set SecondSet) {
         //Make a new set
         set ThirdSet = new set();
@@ -134,8 +139,8 @@ public class ArrayMethods implements HashADT {
         return ThirdSet;
     }
 
-    //NOT OUR FINAL INSERTION METHOD
-    //WE NEED TO DO THIS WITH HASHING
+    //Insertion method
+    //Checking for redundency is very important
     public void Insert(int Element, set DataSet) {
         //If the set already contains that element then
         //it needs to be rejected
@@ -151,7 +156,6 @@ public class ArrayMethods implements HashADT {
     }
 
     //Determines if the element exists within the set
-    //Again, this is suspiciously easy >_>
     public boolean ElementOf(int Element, set DataSet) {
         boolean YesOrNo = false;
         if (DataSet.stuff.contains(Element)) {
@@ -164,6 +168,8 @@ public class ArrayMethods implements HashADT {
     }
 
     //Returns the set as a String to be printed
+    //I'm not sure if this truely needs
+    //to be implemented alongside the print method
     public String ToString(set DataSet) {
         String TheString = "";
         for (int i = 0; i < DataSet.stuff.size(); i++) {
@@ -173,27 +179,29 @@ public class ArrayMethods implements HashADT {
         return TheString;
     }
 
-    //Completely copies one set onto another 
-    //I'M UNSURE THIS WORKS
+    //Completely copies one set onto another
+    //We can't use a straight copy or
+    //we get left with one set referencing another!
     public set DeepCopy(set FirstSet, set SecondSet, int choice) {
         if (choice == 1) {
-            for (int i = 0; i < SecondSet.stuff.size(); i++) {
-                int item = SecondSet.stuff.get(i);
-                FirstSet.stuff.add(item);
-            }
-            return FirstSet;
-        } else if (choice == 2) {
             for (int i = 0; i < FirstSet.stuff.size(); i++) {
                 int item = FirstSet.stuff.get(i);
                 SecondSet.stuff.add(item);
             }
             return SecondSet;
+        } else if (choice == 2) {
+            for (int i = 0; i < SecondSet.stuff.size(); i++) {
+                int item = SecondSet.stuff.get(i);
+                FirstSet.stuff.add(item);
+            }
+            return FirstSet;
         }
         //Can I geet rid of this one?
         return FirstSet;
     }
 
     //Prints out all data elements in the set
+    //Fairly basic
     public void SetPrint(set DataSet) {
         System.out.println("\rThe current elements are:");
 
@@ -210,23 +218,3 @@ public class ArrayMethods implements HashADT {
         return DataSet.stuff.size();
     }
 }
-//SCRAP CODE
-//For every element of B, run it
-//through our Insertion method to add it
-//But how do I call the Insert method without
-//first creating a new instance of my ArrayMethods class?
-//it doesn't seem to want to let me call the Insert method....
-        /*
- for (int i = 0; i < DataSetB.stuff.size(); i++){ 
-            
- DataSetC.stuff.Insert(DataSetB.stuff.get(i), DataSetC);       
-            
- } */
-//ELEMENT OF CODE
-        /*
-         for (int i = 0; i < DataSet.stuff.size(); i++){           
-         if(i == Element)       
-         YesOrNo = true;
-         break;
-         }
-         return YesOrNo; */

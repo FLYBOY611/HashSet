@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package hashset;
 
 import java.util.Scanner;
@@ -15,9 +12,11 @@ public class HashSet {
                 + " using two different data sets");
         System.out.append("To get started, we have implemented two different"
                 + " sets of data");
+        
         //Pull instances of our classes
         ArrayMethods Operations = new ArrayMethods();
         DisplayMenus menus = new DisplayMenus();
+        
         //Make two new sets
         set Array1 = new set();
         set Array2 = new set();
@@ -39,6 +38,7 @@ public class HashSet {
         Scanner input3 = new Scanner(System.in);
         int selector = 0;
 
+        //This is the perfect kind of program for a switch statement!!!!
 
         while (selector != 12) {
             System.out.println("\rEnter the number of your next choice");
@@ -175,12 +175,12 @@ public class HashSet {
 
                         if (ArrayPick == 1) {
                             Array2.stuff.clear();
-                            Array1 = 
+                            Array2 = 
                                Operations.DeepCopy(Array1, Array2, ArrayPick);
                             ValidChoice10 = true;
                         } else if (ArrayPick == 2) {
-                            Array2.stuff.clear();
-                            Array2 = 
+                            Array1.stuff.clear();
+                            Array1 = 
                                Operations.DeepCopy(Array1, Array2, ArrayPick);
                             ValidChoice10 = true;
                         } else {
@@ -218,11 +218,6 @@ public class HashSet {
             }
         }
 
-        Operations.SetPrint(Array1);
-
-        Operations.Insert(3, Array1);
-        //Operations.SetLength(Array1);
-        //This looks like the perfect kind of program for a Switch statement!
 
     }
 }
