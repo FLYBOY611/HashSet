@@ -186,6 +186,7 @@ public class HashSet {
                         } else {
                             System.out.println("That wasn't a valid choice!"
                                     + "/r");
+                
                         }
                     }
                     break;
