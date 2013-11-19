@@ -1,4 +1,5 @@
 package hashset;
+//This should be the master
 
 //Here we will implement all our methods that we declared in the ADT
 public class ArrayMethods implements HashADT {
