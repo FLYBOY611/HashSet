@@ -24,7 +24,7 @@ public class ArrayMethods implements HashADT {
     //to do so much looping by using standard libraries
     //that exist within the ArrayList
     public boolean isSubset(set DataSetA, set DataSetB) {
-        if (DataSetA.stuff.containsAll(DataSetB.stuff)) {
+        if (DataSetB.stuff.containsAll(DataSetA.stuff)) {
             System.out.println("The set is a subset!");
             return true;
         } else {
@@ -158,7 +158,6 @@ public class ArrayMethods implements HashADT {
 
     //Determines if the element exists within the set
     public boolean ElementOf(int Element, set DataSet) {
-        boolean YesOrNo = false;
         if (DataSet.stuff.contains(Element)) {
             System.out.println("That element exists in that set!");
             return true;

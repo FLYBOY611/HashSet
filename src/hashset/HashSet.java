@@ -1,4 +1,3 @@
-
 package hashset;
 
 import java.util.Scanner;
@@ -12,11 +11,12 @@ public class HashSet {
                 + " using two different data sets");
         System.out.append("To get started, we have implemented two different"
                 + " sets of data");
-        
+
         //Pull instances of our classes
         ArrayMethods Operations = new ArrayMethods();
         DisplayMenus menus = new DisplayMenus();
-        
+        ListOfSets masterlist = new ListOfSets();
+
         //Make two new sets
         set Array1 = new set();
         set Array2 = new set();
@@ -31,6 +31,10 @@ public class HashSet {
             //Operations.Insert(i, Array2);
             Array2.stuff.add(i);
         }
+
+        //Add those new sets into the master list
+        masterlist.listofsets.add(Array1);
+        masterlist.listofsets.add(Array2);
 
         //Ready the input fields!
         Scanner input1 = new Scanner(System.in);
@@ -55,13 +59,16 @@ public class HashSet {
 
                     //Chose the array and make sure it's a valid choice
                     while (ValidChoice == false) {
-                        menus.WhichArray();
+                        System.out.println("Add to which set?");
+                        masterlist.PrintList();
                         int ArrayPick = input3.nextInt();
-                        if (ArrayPick == 1) {
-                            Operations.Insert(ElementIn, Array1);
-                            ValidChoice = true;
-                        } else if (ArrayPick == 2) {
-                            Operations.Insert(ElementIn, Array2);
+
+                        //If the masterlist has a set in that location
+                        //add the element
+                        if (masterlist.listofsets.contains(
+                                masterlist.listofsets.get(ArrayPick)) == true) {
+                            set Foo = masterlist.listofsets.get(ArrayPick);
+                            Operations.Insert(ElementIn, Foo);
                             ValidChoice = true;
                         } else {
                             System.out.println("That wasn't a valid choice!"
@@ -74,13 +81,16 @@ public class HashSet {
                     boolean ValidChoice2 = false;
                     //Chose the array and make sure it's a valid choice
                     while (ValidChoice2 == false) {
-                        menus.WhichArray();
+                        System.out.println("Print which set?");
+                        masterlist.PrintList();
                         int ArrayPick = input3.nextInt();
-                        if (ArrayPick == 1) {
-                            Operations.SetPrint(Array1);
-                            ValidChoice2 = true;
-                        } else if (ArrayPick == 2) {
-                            Operations.SetPrint(Array2);
+
+                        //If that set they want to choose does exist
+                        //Print it out
+                        if (masterlist.listofsets.contains(
+                                masterlist.listofsets.get(ArrayPick)) == true) {
+                            set Foo = masterlist.listofsets.get(ArrayPick);
+                            Operations.SetPrint(Foo);
                             ValidChoice2 = true;
                         } else {
                             System.out.println("That wasn't a valid choice!"
@@ -93,13 +103,14 @@ public class HashSet {
                     boolean ValidChoice3 = false;
                     //Chose the array and make sure it's a valid choice
                     while (ValidChoice3 == false) {
-                        menus.WhichArray();
+                        System.out.println("Which set?");
+                        masterlist.PrintList();
                         int ArrayPick = input3.nextInt();
-                        if (ArrayPick == 1) {
-                            Operations.SetLength(Array1);
-                            ValidChoice3 = true;
-                        } else if (ArrayPick == 2) {
-                            Operations.SetLength(Array2);
+
+                        if (masterlist.listofsets.contains(
+                                masterlist.listofsets.get(ArrayPick)) == true) {
+                            set Foo = masterlist.listofsets.get(ArrayPick);
+                            Operations.SetLength(Foo);
                             ValidChoice3 = true;
                         } else {
                             System.out.println("That wasn't a valid choice!"
@@ -116,36 +127,77 @@ public class HashSet {
 
                     //Chose the array and make sure it's a valid choice
                     while (ValidChoice4 == false) {
-                        menus.WhichArray();
+                        System.out.println("In which set?");
+                        masterlist.PrintList();
                         int ArrayPick = input3.nextInt();
-                        if (ArrayPick == 1) {
-                            Operations.ElementOf(ElementIn2, Array1);
-                            ValidChoice4 = true;
-                        } else if (ArrayPick == 2) {
-                            Operations.ElementOf(ElementIn2, Array2);
+
+                        //If they choose a valid set
+                        //check and see if it contains that element
+                        if (masterlist.listofsets.contains(
+                                masterlist.listofsets.get(ArrayPick)) == true) {
+                            set Foo = masterlist.listofsets.get(ArrayPick);
+                            Operations.ElementOf(ElementIn2, Foo);
                             ValidChoice4 = true;
                         } else {
                             System.out.println("That wasn't a valid choice!"
-                                    + "/r");
+                                    + "\r");
                         }
                     }
                     break;
                 //CHECK IF BOTH SETS ARE EQUAL
                 case 5:
-                    Operations.Equality(Array1, Array2);
+                    boolean ValidChoice5 = false;
+
+                    //Chose the array and make sure it's a valid choice
+                    while (ValidChoice5 == false) {
+                        System.out.println("Pick the first set to compare");
+                        masterlist.PrintList();
+                        int ArrayPick = input3.nextInt();
+                        System.out.println("Pick the second set to compare");
+                        int ArrayPick2 = input3.nextInt();
+
+
+                        //If they choose a valid set
+                        //check and see if it contains that element
+                        //WE NEED ERROR CHECKING HERE TO VERIFY
+                        //BOTH SETS EXIST IN OUR ARRAY OF ARRAYS
+                        if (masterlist.listofsets.contains(
+                                masterlist.listofsets.get(ArrayPick)) == true
+                                && masterlist.listofsets.contains(
+                                masterlist.listofsets.get(ArrayPick2)) == true) {
+                            set Foo1 = masterlist.listofsets.get(ArrayPick);
+                            set Foo2 = masterlist.listofsets.get(ArrayPick2);
+                            //Send it to the equality method
+                            Operations.Equality(Foo1, Foo2);
+                            ValidChoice5 = true;
+                        } else {
+                            System.out.println("That wasn't a valid choice!"
+                                    + "\r");
+                        }
+                    }
                     break;
                 //CHECK IF ONE IS A SUBET OF THE OTHER
                 case 6:
                     boolean ValidChoice6 = false;
+                    
                     while (ValidChoice6 == false) {
-                        menus.WhichArraySubset();
+                        System.out.println("Pick the 'Subset'");
+                        masterlist.PrintList();
                         int ArrayPick = input3.nextInt();
+                        System.out.println("Pick the 'Superset' you will "
+                                + "check against.");
+                        masterlist.PrintList();
+                        int ArrayPick2 = input3.nextInt();
 
-                        if (ArrayPick == 1) {
-                            Operations.isSubset(Array1, Array2);
-                            ValidChoice6 = true;
-                        } else if (ArrayPick == 2) {
-                            Operations.isSubset(Array2, Array1);
+                        if (masterlist.listofsets.contains(
+                                masterlist.listofsets.get(ArrayPick)) == true
+                                && masterlist.listofsets.contains(
+                                masterlist.listofsets.get(ArrayPick2)) == true) {
+                            set Foo1 = masterlist.listofsets.get(ArrayPick);
+                            set Foo2 = masterlist.listofsets.get(ArrayPick2);
+                            
+                            //Send it to the subset method
+                            Operations.isSubset(Foo1, Foo2);
                             ValidChoice6 = true;
                         } else {
                             System.out.println("That wasn't a valid choice!"
@@ -175,18 +227,18 @@ public class HashSet {
 
                         if (ArrayPick == 1) {
                             Array2.stuff.clear();
-                            Array2 = 
-                               Operations.DeepCopy(Array1, Array2, ArrayPick);
+                            Array2 =
+                                    Operations.DeepCopy(Array1, Array2, ArrayPick);
                             ValidChoice10 = true;
                         } else if (ArrayPick == 2) {
                             Array1.stuff.clear();
-                            Array1 = 
-                               Operations.DeepCopy(Array1, Array2, ArrayPick);
+                            Array1 =
+                                    Operations.DeepCopy(Array1, Array2, ArrayPick);
                             ValidChoice10 = true;
                         } else {
                             System.out.println("That wasn't a valid choice!"
                                     + "/r");
-                
+
                         }
                     }
                     break;
