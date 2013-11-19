@@ -1,4 +1,5 @@
 package hashset;
+//Here is the branced version
 
 //Here we will implement all our methods that we declared in the ADT
 public class ArrayMethods implements HashADT {
