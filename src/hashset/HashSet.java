@@ -65,16 +65,19 @@ public class HashSet {
 
                         //If the masterlist has a set in that location
                         //add the element
-                        if (masterlist.listofsets.contains(
-                                masterlist.listofsets.get(ArrayPick)) == true) {
+                        if (ArrayPick>=0 && 
+                                ArrayPick <= masterlist.listofsets.size()) {
                             set Foo = masterlist.listofsets.get(ArrayPick);
                             Operations.Insert(ElementIn, Foo);
                             ValidChoice = true;
                         } else {
                             System.out.println("That wasn't a valid choice!"
-                                    + "/r");
+                                    + "\r");
                         }
                     }
+                    /*masterlist.listofsets.contains(
+                                masterlist.listofsets.get(ArrayPick)) == true
+                                */
                     break;
                 //PRINT OUT A SET
                 case 2:
@@ -87,14 +90,14 @@ public class HashSet {
 
                         //If that set they want to choose does exist
                         //Print it out
-                        if (masterlist.listofsets.contains(
-                                masterlist.listofsets.get(ArrayPick)) == true) {
+                        if (ArrayPick>=0 && 
+                                ArrayPick <= masterlist.listofsets.size()) {
                             set Foo = masterlist.listofsets.get(ArrayPick);
                             Operations.SetPrint(Foo);
                             ValidChoice2 = true;
                         } else {
                             System.out.println("That wasn't a valid choice!"
-                                    + "/r");
+                                    + "\r");
                         }
                     }
                     break;
@@ -107,14 +110,14 @@ public class HashSet {
                         masterlist.PrintList();
                         int ArrayPick = input3.nextInt();
 
-                        if (masterlist.listofsets.contains(
-                                masterlist.listofsets.get(ArrayPick)) == true) {
+                        if (ArrayPick>=0 && 
+                                ArrayPick <= masterlist.listofsets.size()) {
                             set Foo = masterlist.listofsets.get(ArrayPick);
                             Operations.SetLength(Foo);
                             ValidChoice3 = true;
                         } else {
                             System.out.println("That wasn't a valid choice!"
-                                    + "/r");
+                                    + "\r");
                         }
                     }
                     break;
@@ -133,8 +136,8 @@ public class HashSet {
 
                         //If they choose a valid set
                         //check and see if it contains that element
-                        if (masterlist.listofsets.contains(
-                                masterlist.listofsets.get(ArrayPick)) == true) {
+                        if (ArrayPick>=0 && 
+                                ArrayPick <= masterlist.listofsets.size()) {
                             set Foo = masterlist.listofsets.get(ArrayPick);
                             Operations.ElementOf(ElementIn2, Foo);
                             ValidChoice4 = true;
@@ -161,10 +164,10 @@ public class HashSet {
                         //check and see if it contains that element
                         //WE NEED ERROR CHECKING HERE TO VERIFY
                         //BOTH SETS EXIST IN OUR ARRAY OF ARRAYS
-                        if (masterlist.listofsets.contains(
-                                masterlist.listofsets.get(ArrayPick)) == true
-                                && masterlist.listofsets.contains(
-                                masterlist.listofsets.get(ArrayPick2)) == true) {
+                        if (ArrayPick>=0 && 
+                                ArrayPick <= masterlist.listofsets.size()
+                                && ArrayPick2>=0 && 
+                                ArrayPick2 <= masterlist.listofsets.size()) {
                             set Foo1 = masterlist.listofsets.get(ArrayPick);
                             set Foo2 = masterlist.listofsets.get(ArrayPick2);
                             //Send it to the equality method
@@ -179,7 +182,7 @@ public class HashSet {
                 //CHECK IF ONE IS A SUBET OF THE OTHER
                 case 6:
                     boolean ValidChoice6 = false;
-                    
+
                     while (ValidChoice6 == false) {
                         System.out.println("Pick the 'Subset'");
                         masterlist.PrintList();
@@ -189,77 +192,171 @@ public class HashSet {
                         masterlist.PrintList();
                         int ArrayPick2 = input3.nextInt();
 
-                        if (masterlist.listofsets.contains(
-                                masterlist.listofsets.get(ArrayPick)) == true
-                                && masterlist.listofsets.contains(
-                                masterlist.listofsets.get(ArrayPick2)) == true) {
+                        if (ArrayPick>=0 && 
+                                ArrayPick <= masterlist.listofsets.size()
+                                && ArrayPick2>=0 && 
+                                ArrayPick2 <= masterlist.listofsets.size()) {
                             set Foo1 = masterlist.listofsets.get(ArrayPick);
                             set Foo2 = masterlist.listofsets.get(ArrayPick2);
-                            
+
                             //Send it to the subset method
                             Operations.isSubset(Foo1, Foo2);
                             ValidChoice6 = true;
                         } else {
                             System.out.println("That wasn't a valid choice!"
-                                    + "/r");
+                                    + "\r");
                         }
                     }
                     break;
                 //COMBINE SETS IN A UNION
                 case 7:
-                    Operations.Union(Array1, Array2);
+                    boolean ValidChoice7 = false;
+
+                    while (ValidChoice7 == false) {
+                        System.out.println("Pick the first set");
+                        masterlist.PrintList();
+                        int ArrayPick = input3.nextInt();
+                        System.out.println("Pick the second set");
+                        masterlist.PrintList();
+                        int ArrayPick2 = input3.nextInt();
+
+                        if (ArrayPick>=0 && 
+                                ArrayPick <= masterlist.listofsets.size()
+                                && ArrayPick2>=0 && 
+                                ArrayPick2 <= masterlist.listofsets.size()) {
+
+                            set Foo1 = masterlist.listofsets.get(ArrayPick);
+                            set Foo2 = masterlist.listofsets.get(ArrayPick2);
+
+                            //Send it to the union method
+                            set NewUnion = Operations.Union(Foo1, Foo2);
+                            masterlist.listofsets.add(NewUnion);
+                            System.out.println("The new set has been added"
+                                    + " to the list of available sets.");
+                            ValidChoice7 = true;
+                        } else {
+                            System.out.println("That wasn't a valid choice!"
+                                    + "\r");
+                        }
+                    }
                     break;
                 //DISPLAY DATA INTERSECTIONS
                 case 8:
-                    Operations.Intersection(Array1, Array2);
+                    boolean ValidChoice8 = false;
+
+                    while (ValidChoice8 == false) {
+                        System.out.println("Pick the first set");
+                        masterlist.PrintList();
+                        int ArrayPick = input3.nextInt();
+                        System.out.println("Pick the second set");
+                        masterlist.PrintList();
+                        int ArrayPick2 = input3.nextInt();
+
+                        if (ArrayPick>=0 && 
+                                ArrayPick <= masterlist.listofsets.size()
+                                && ArrayPick2>=0 && 
+                                ArrayPick2 <= masterlist.listofsets.size()) {
+
+                            set Foo1 = masterlist.listofsets.get(ArrayPick);
+                            set Foo2 = masterlist.listofsets.get(ArrayPick2);
+
+                            //Send it to the intersections method
+                            set NewIntersection = Operations.Intersection(Foo1, Foo2);
+                            masterlist.listofsets.add(NewIntersection);
+                            System.out.println("The new set has been added"
+                                    + " to the list of available sets.");
+                            ValidChoice8 = true;
+                        } else {
+                            System.out.println("That wasn't a valid choice!"
+                                    + "\r");
+                        }
+                    }
                     break;
                 //DISPLAY DATA DIFFERENCES
                 case 9:
-                    Operations.Difference(Array1, Array2);
+                    boolean ValidChoice9 = false;
+
+                    while (ValidChoice9 == false) {
+                        System.out.println("Pick the first set");
+                        masterlist.PrintList();
+                        int ArrayPick = input3.nextInt();
+                        System.out.println("Pick the second set");
+                        masterlist.PrintList();
+                        int ArrayPick2 = input3.nextInt();
+
+                        if (ArrayPick>=0 && 
+                                ArrayPick <= masterlist.listofsets.size()
+                                && ArrayPick2>=0 && 
+                                ArrayPick2 <= masterlist.listofsets.size()) {
+
+                            set Foo1 = masterlist.listofsets.get(ArrayPick);
+                            set Foo2 = masterlist.listofsets.get(ArrayPick2);
+
+                            //Send it to the intersections method
+                            set NewDifference = Operations.Difference(Foo1, Foo2);
+                            masterlist.listofsets.add(NewDifference);
+                            System.out.println("The new set has been added"
+                                    + " to the list of available sets.");
+                            ValidChoice9 = true;
+                        } else {
+                            System.out.println("That wasn't a valid choice!"
+                                    + "\r");
+                        }
+                    }
                     break;
                 //DEEP COPY
                 case 10:
                     boolean ValidChoice10 = false;
 
                     while (ValidChoice10 == false) {
-                        menus.WhichArrayDeepCopy();
+                        System.out.println("Pick the set to copy");
+                        masterlist.PrintList();
                         int ArrayPick = input3.nextInt();
+                        System.out.println("Pick the set to copy onto");
+                        masterlist.PrintList();
+                        int ArrayPick2 = input3.nextInt();
 
-                        if (ArrayPick == 1) {
-                            Array2.stuff.clear();
-                            Array2 =
-                                    Operations.DeepCopy(Array1, Array2, ArrayPick);
-                            ValidChoice10 = true;
-                        } else if (ArrayPick == 2) {
-                            Array1.stuff.clear();
-                            Array1 =
-                                    Operations.DeepCopy(Array1, Array2, ArrayPick);
+                        if (ArrayPick>=0 && 
+                                ArrayPick <= masterlist.listofsets.size()
+                                && ArrayPick2>=0 && 
+                                ArrayPick2 <= masterlist.listofsets.size()) {
+
+                            set Foo1 = masterlist.listofsets.get(ArrayPick);
+                            set Foo2 = masterlist.listofsets.get(ArrayPick2);
+
+                            //Send it to the intersections method
+                            masterlist.listofsets.set(ArrayPick2, Operations.DeepCopy(Foo1, Foo2));
+
+
+                            System.out.println("The set has been "
+                                    + "successfully copied.");
                             ValidChoice10 = true;
                         } else {
                             System.out.println("That wasn't a valid choice!"
-                                    + "/r");
-
+                                    + "\r");
                         }
                     }
                     break;
                 //WIPE AWAY A SET
                 case 11:
                     boolean ValidChoice11 = false;
+
                     while (ValidChoice11 == false) {
-                        menus.WhichArrayWipe();
+                        System.out.println("What set do you want to empty?");
+                        masterlist.PrintList();
                         int ArrayPick = input3.nextInt();
 
-                        if (ArrayPick == 1) {
-                            Array1.stuff.clear();
-                            ValidChoice11 = true;
-                        } else if (ArrayPick == 2) {
-                            Array2.stuff.clear();
+                        if (ArrayPick>=0 && 
+                                ArrayPick <= masterlist.listofsets.size()) {
+
+                            masterlist.listofsets.get(ArrayPick).stuff.clear();
                             ValidChoice11 = true;
                         } else {
                             System.out.println("That wasn't a valid choice!"
-                                    + "/r");
+                                    + "\r");
                         }
                     }
+                    System.out.println("Set has been wiped");
                     break;
                 case 12:
                     System.out.println("Goodbye!");

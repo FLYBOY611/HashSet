@@ -182,22 +182,17 @@ public class ArrayMethods implements HashADT {
     //Completely copies one set onto another
     //We can't use a straight copy or
     //we get left with one set referencing another!
-    public set DeepCopy(set FirstSet, set SecondSet, int choice) {
-        if (choice == 1) {
+    public set DeepCopy(set FirstSet, set SecondSet) {
+        //Empty out that set    
+        SecondSet.stuff.clear();
+            
             for (int i = 0; i < FirstSet.stuff.size(); i++) {
                 int item = FirstSet.stuff.get(i);
                 SecondSet.stuff.add(item);
             }
             return SecondSet;
-        } else if (choice == 2) {
-            for (int i = 0; i < SecondSet.stuff.size(); i++) {
-                int item = SecondSet.stuff.get(i);
-                FirstSet.stuff.add(item);
-            }
-            return FirstSet;
-        }
-        //Can I geet rid of this one?
-        return FirstSet;
+        
+        
     }
 
     //Prints out all data elements in the set

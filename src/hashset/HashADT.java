@@ -32,7 +32,7 @@ public interface HashADT {
 
 //We need a copy constructor that performs a deep copy
 //I guess we do it here?
-    public set DeepCopy(set FirstSet, set SecondSet, int choice);
+    public set DeepCopy(set FirstSet, set SecondSet);
 
 //Prints out the contents of the given set
     public void SetPrint(set DataSet);

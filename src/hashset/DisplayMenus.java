@@ -17,11 +17,11 @@ public class DisplayMenus {
         System.out.println("4. See if an element is contined in a set");
         System.out.println("5. Check if both sets are equal");
         System.out.println("6. Check if one set is a subset of the other");
-        System.out.println("7. Combine the sets in a Union");
-        System.out.println("8. See the data intersections");
-        System.out.println("9. Display the elements that are different");
+        System.out.println("7. Make a Union set from two sets");
+        System.out.println("8. Make a set of data intersections");
+        System.out.println("9. Make a set of elements that are different");
         System.out.println("10. Deep copy one set to another");
-        System.out.println("11. Completely wipe a set");
+        System.out.println("11. Completely empty a set");
         System.out.println("12. Exit the program");
     }
     
